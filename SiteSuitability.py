@@ -166,6 +166,8 @@ work_slope_out_path = os.path.join(workspace_gdb, "slope_raster")
 # Save the output slope raster
 outSlope.save(work_slope_out_path)
 
+print (work_slope_out_path)
+
 # Step 9
 
 # print ("calculating statistics...")
@@ -174,28 +176,42 @@ outSlope.save(work_slope_out_path)
 
 # print("reclassifying the slope output...")
 # Set local variables
-# input_slope_raster = work_slope_out_path
-# reclass_field = "VALUE"
+input_slope_raster = work_slope_out_path
+reclass_field = "VALUE"
 # Define the RemapValue Object
 # myRemapRange = RemapRange([[0, 1, 8], [1, 2, 9], [2, 4, 10], [4, 5, 9], [5, 6, 8], [6, 7, 7], [7, 8, 6], [8, 9, 5], [9, 10, 4], [10, 300, 1]])
 # Execute Reclassify
 # outReclassRR = Reclassify(input_slope_raster, reclass_field, myRemapRange, "NODATA")
 # Specify a temporary path to the reclassify output
-# work_reclassify_out_path = os.path.join(workspace_gdb, "slope_reclass")
+
 # Save the output
 # outReclassRR.save(work_reclassify_out_path)
 
 # Step 9 Alternative:
 
 # print ("calculating statistics...")
-# arcpy.CalculateStatistics_management(work_slope_out_path)
+arcpy.CalculateStatistics_management(work_slope_out_path)
 #
 # print ("reclassifying the slope output...")
 # outReclass1 = Reclassify(work_slope_out_path, "VALUE",
-#                              RemapRange([[0, 1, 8], [1, 2, 9], [2, 4, 10], [4, 5, 9], [5, 6, 8], [6, 7, 7],
-#                                          [7, 8, 6], [8, 9, 5], [9, 10, 4], [10, 300, 1]]), "NODATA")
-# work_reclass_out_path = os.path.join(workspace_gdb, "slope_reclass")
+#                              "0 1 8;1 2 9;2 4 10;4 5 9;5 6 8;6 7 7;7 8 6;8 9 5;9 10 4;10 300 1",
+#                              "NODATA")
+
+work_reclass_out_path = os.path.join(workspace_gdb, "Reclass_slop1")
 # outReclass1.save(work_reclass_out_path)
+
+rasterLayer = arcpy.management.MakeRasterLayer(input_slope_raster,
+                                "MakeRas_slope_r1",
+                                 None,
+                                 "821686.139217557 -607944.542416126 1777512.22600888 654107.338987966",
+                                 None).getOutput(0)
+
+out_raster = arcpy.sa.Reclassify(rasterLayer,
+                                 "VALUE",
+                                 "0 1 8;1 2 9;2 4 10;4 5 9;5 6 8;6 7 7;7 8 6;8 9 5;9 10 4;10 300 1",
+                                 "NODATA"); out_raster.save(work_reclass_out_path)
+
+
 
 # Step 10
 
@@ -285,15 +301,15 @@ input_pa_buffer = out_protected_areas
 out_clip_protected_areas = os.path.join(workspace_gdb, "protected_areas_clip")
 # Execute clip tool
 arcpy.Clip_analysis(input_pa_buffer, clipTo, out_clip_protected_areas)
-
-# Step 17
-
-print ("converting to raster file...")
-# Specify input and output paths
-input_pa_polygon = out_clip_protected_areas
-out_protected_areas_raster = os.path.join(workspace_gdb, "protected_areas_raster")
-#Execute PolygonToRaster
-arcpy.PolygonToRaster_conversion(input_pa_polygon, protectedAreasValue, out_protected_areas_raster)
+#
+# # Step 17
+#
+# print ("converting to raster file...")
+# # Specify input and output paths
+# input_pa_polygon = out_clip_protected_areas
+# out_protected_areas_raster = os.path.join(workspace_gdb, "protected_areas_raster")
+# #Execute PolygonToRaster
+# arcpy.PolygonToRaster_conversion(input_pa_polygon, protectedAreasValue, out_protected_areas_raster)
 
 
 print ("ended operation") 
