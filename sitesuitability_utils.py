@@ -3,6 +3,13 @@ import os
 import datetime
 from arcpy.sa import Slope, RemapRange, Reclassify
 
+def create_unique_fgdb(workspace):
+    print ("creating workspace file geodatabase...")
+    timestamp = '{:%Y%m%d_%H%M}'.format(datetime.datetime.now())
+    workspace_gdb_name = "Buffer_{0}".format(timestamp)
+    workspace_gdb = arcpy.CreateFileGDB_management(workspace,
+                                                   workspace_gdb_name).getOutput(0)
+    return workspace_gdb
 
 def cleanup_trash(cleanup_list):
     """
@@ -12,14 +19,23 @@ def cleanup_trash(cleanup_list):
     """
     print ("cleaning up files...")
     for items in cleanup_list:
-        arcpy.Delete_management(cleanup_list)
+        arcpy.Delete_management(items)
     print ("done cleaning up files")
 
 
+def get_fc_name_from_full_path(fc_path):
+    """
 
-def convert_polygon_to_raster(in_feature, value, out_raster):
+    :param fc_path:
+    :return:
+    """
+    return fc_path.split("\\")[-1]
+
+
+def convert_polygon_to_raster(workspace_gdb, in_feature, value, out_raster_name):
     print ("executing convert polygon to raster...")
-    output_raster = arcpy.PolygonToRaster_conversion(in_feature, value, out_raster).getOutput(0)
+    output_path = os.path.join(workspace_gdb, out_raster_name)
+    output_raster = arcpy.PolygonToRaster_conversion(in_feature, value, output_path).getOutput(0)
     print ("created output raster at {0}".format(output_raster))
     print ("finished processing conversion")
     return output_raster
@@ -53,7 +69,7 @@ def create_security_raster(workspace_gdb, in_features_list,
         # Specify a temporary path to the buffer output
         work_buffer_out_path = os.path.join(workspace_gdb, "buffer_" + str(counter))
         # Run the arcpy buffer tool
-        work_buffer_out = arcpy.Buffer_analysis(in_features_list,
+        work_buffer_out = arcpy.Buffer_analysis(item_to_buffer,
                                                 work_buffer_out_path,
                                                 buffer_size_string).getOutput(0)
         # Add our output buffer to the temp output buffer container
@@ -88,21 +104,14 @@ def create_security_raster(workspace_gdb, in_features_list,
     trash_bucket.append(dissolvedBuffers)
 
     # Step 5
-
-    print ("converting to raster...")
-    # Set local variables
-    in_features = dissolvedBuffers
-    value_field = "OBJECTID"
-    out_raster = os.path.join(workspace_gdb, "security_raster")
-    # Execute PolygonToRaster
-    arcpy.PolygonToRaster_conversion(in_features, value_field, out_raster)
-
-    if clean_up_temp_files:
-        cleanup_trash(trash_bucket)
-
+    value = "OBJECTID"
+    out_raster_name = "security_raster"
+    out_raster = convert_polygon_to_raster(workspace_gdb, dissolvedBuffers, value, out_raster_name)
 
     print ("end of security buffer script")
     return out_raster
 
+
+# def create_slope_raster(workspace_gdb, input_elevation, input_slope_raster, output_measurement, reclass_field):
 
 
