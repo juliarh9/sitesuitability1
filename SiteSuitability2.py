@@ -86,7 +86,7 @@ bufferList = "; ".join(temp_output_list)
 
 # Execute Merge
 mergedBuffers = os.path.join(workspace_gdb, "mergedBuffers")
-arcpy.Merge_management(inputs=bufferList, output=mergedBuffers)
+arcpy.Merge_management(bufferList, mergedBuffers)
 
 # Step 3
 
@@ -126,19 +126,15 @@ print ("end of security buffer script")
 
 # Step 8: Execute slope tool on input elevation data
 
-# Step 9: Calculate statistics on output slope raster
+# Step 9: Calculate statistics on output slope raster and reclassify
 
-# Step 10: Make Raster Layer from output slope raster
+# Step 10: Convert floodplain polygon to raster file
 
-# Step 11: Execute Reclassify on output raster layer
+# Step 11: Convert wetlands polygon to raster file
 
-# Step 12: Convert floodplain polygon to raster file
+# Step 12: Convert soil polygon to raster file using SDRA as the value
 
-# Step 13: Convert wetlands polygon to raster file
-
-# Step 14: Convert soil polygon to raster file using SDRA as the value
-
-# Step 15: Clean up intermediate files
+# Step 13: Clean up intermediate files
 
 ###
 
@@ -169,37 +165,55 @@ outSlope = Slope(input_elev_raster, outMeasurement, zFactor)
 work_slope_out_path = os.path.join(workspace_gdb, "slope_raster")
 # Save the output slope raster
 outSlope.save(work_slope_out_path)
+
 print (work_slope_out_path)
 
 # Step 9
 
+# print ("calculating statistics...")
+# Calculate statistics on the output slope raster
+# arcpy.CalculateStatistics_management(work_slope_out_path)
 
-# Step 10
-
+# print("reclassifying the slope output...")
 # Set local variables
 input_slope_raster = work_slope_out_path
 reclass_field = "VALUE"
+# Define the RemapValue Object
+# myRemapRange = RemapRange([[0, 1, 8], [1, 2, 9], [2, 4, 10], [4, 5, 9], [5, 6, 8], [6, 7, 7], [7, 8, 6], [8, 9, 5], [9, 10, 4], [10, 300, 1]])
+# Execute Reclassify
+# outReclassRR = Reclassify(input_slope_raster, reclass_field, myRemapRange, "NODATA")
+# Specify a temporary path to the reclassify output
 
-# Calculate statistics on the slope output
-print ("calculating statistics...")
+# Save the output
+# outReclassRR.save(work_reclassify_out_path)
+
+# Step 9 Alternative:
+
+# print ("calculating statistics...")
 arcpy.CalculateStatistics_management(work_slope_out_path)
+#
+# print ("reclassifying the slope output...")
+# outReclass1 = Reclassify(work_slope_out_path, "VALUE",
+#                              "0 1 8;1 2 9;2 4 10;4 5 9;5 6 8;6 7 7;7 8 6;8 9 5;9 10 4;10 300 1",
+#                              "NODATA")
 
-# Specify output path for reclassification
 work_reclass_out_path = os.path.join(workspace_gdb, "Reclass_slop1")
-# Execute Make Raster Layer
+# outReclass1.save(work_reclass_out_path)
+
 rasterLayer = arcpy.management.MakeRasterLayer(input_slope_raster,
                                 "MakeRas_slope_r1",
                                  None,
                                  "821686.139217557 -607944.542416126 1777512.22600888 654107.338987966",
                                  None).getOutput(0)
 
-print ("reclassifying slope raster layer...")
 out_raster = arcpy.sa.Reclassify(rasterLayer,
                                  "VALUE",
                                  "0 1 8;1 2 9;2 4 10;4 5 9;5 6 8;6 7 7;7 8 6;8 9 5;9 10 4;10 300 1",
                                  "NODATA"); out_raster.save(work_reclass_out_path)
 
-# # Step 12
+
+
+# Step 10
 #
 # print ("converting floodplains polygon to raster...")
 # # Set local variables
@@ -209,7 +223,7 @@ out_raster = arcpy.sa.Reclassify(rasterLayer,
 # # Execute PolygonToRaster
 # arcpy.PolygonToRaster_conversion(input_floodplains, floodplains_value, out_floodplains_raster)
 #
-# # Step 13
+# # Step 11
 #
 # print("converting wetlands polygon to raster...")
 # # Set local variables
@@ -219,7 +233,7 @@ out_raster = arcpy.sa.Reclassify(rasterLayer,
 # # Execute PolygonToRaster
 # arcpy.PolygonToRaster_conversion(input_wetlands, wetlands_value, out_wetlands_raster)
 #
-# # Step 14
+# # Step 12
 #
 # print ("converting soils polygon to raster")
 # # Set local variables
@@ -229,7 +243,7 @@ out_raster = arcpy.sa.Reclassify(rasterLayer,
 # # Execute PolygonToRaster
 # arcpy.PolygonToRaster_conversion(input_soils, soils_value, out_soils_raster)
 
-# Step 15
+# Step 13
 
 print ("end of topography model script")
 
@@ -239,23 +253,23 @@ print ("end of topography model script")
 
 ### Pseudo-Code ###
 
-# Step 16: Set reference to the buffer tool configuration and input parameters
+# Step 14: Set reference to the buffer tool configuration and input parameters
 
-# Step 17: Buffer Protected Areas
+# Step 15: Buffer Protected Areas
 
-# Step 18: Clip protected areas buffer to country boundary
+# Step 16: Clip protected areas buffer to country boundary
 
-# Step 19: Convert clip output polygon to raster file
+# Step 17: Convert clip output polygon to raster file
 
-# Step 20: Convert bare areas polygon to raster file
+# Step 18: Convert bare areas polygon to raster file
 
-# Step 21: Reclassify tree cover raster file
+# Step 19: Reclassify tree cover raster file
 
-# Step 22: Clean up intermediate files
+# Step 20: Clean up intermediate files
 
 ###
 
-# # Step 16
+# # Step 14
 #
 # # Set reference to tool operation config parameters
 # print ("setting reference to the buffer tool operation configuration parameters...")
@@ -271,7 +285,7 @@ print ("end of topography model script")
 # input_protected_areas = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\ke_protected-areas.shp"
 #
 #
-# # Step 17
+# # Step 15
 #
 # print ("buffering protected areas...")
 # # Specify a path to the buffer output
@@ -279,7 +293,7 @@ print ("end of topography model script")
 # #Execute the buffer tool
 # arcpy.Buffer_analysis(input_protected_areas, out_protected_areas, buffer_distance, sideType, endType, dissolveType)
 #
-# # Step 18
+# # Step 16
 #
 # print ("clipping protected areas...")
 # # Specify input and output paths
@@ -287,8 +301,8 @@ print ("end of topography model script")
 # out_clip_protected_areas = os.path.join(workspace_gdb, "protected_areas_clip")
 # # Execute clip tool
 # arcpy.Clip_analysis(input_pa_buffer, clipTo, out_clip_protected_areas)
-#
-# # Step 19
+# #
+# # Step 17
 #
 # print ("converting to raster file...")
 # # Specify input and output paths
@@ -298,4 +312,4 @@ print ("end of topography model script")
 # arcpy.PolygonToRaster_conversion(input_pa_polygon, protectedAreasValue, out_protected_areas_raster)
 
 
-print ("ended operation") 
+print ("ended operation")
