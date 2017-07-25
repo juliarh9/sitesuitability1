@@ -1,0 +1,9 @@
+<PAMDataset>
+  <PAMRasterBand band="1">
+    <Description>dem_250m</Description>
+    <NoDataValue>-3.27680000000000E+04</NoDataValue>
+    <Metadata>
+      <MDI key="LAYER_TYPE">athematic</MDI>
+    </Metadata>
+  </PAMRasterBand>
+</PAMDataset>

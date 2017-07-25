@@ -1,0 +1,118 @@
+/3.2
+(ODB.1
+	FirstRootClassName:	"Legend"
+	Roots:	2
+	Version:	32
+)
+
+(Legend.2
+	SymType:	0x02
+	LegType:	0x08
+	ClassType:	0x03
+	FieldNames:	3
+	Symbols:	4
+	Class:	13
+	Class:	14
+	StdDevs:	1.00000000000000
+	NullSym:	15
+	NullValues:	19
+	StatValues:	20
+	Precision:	-3
+)
+
+(AVStr.3
+	S:	"Landcover"
+)
+
+(SymList.4
+	Child:	5
+	Child:	9
+)
+
+(BShSym.5
+	Color:	6
+	Outline:	1
+	OutlineColor:	7
+	OutlineWidth:	0.10000000000000
+	BgColor:	8
+)
+
+(TClr.6
+	Green:	0x3100
+	Blue:	0xf500
+)
+
+(TClr.7
+)
+
+(TClr.8
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(BShSym.9
+	Color:	10
+	Outline:	1
+	OutlineColor:	11
+	OutlineWidth:	0.10000000000000
+	BgColor:	12
+)
+
+(TClr.10
+	Name:	"Transparent"
+)
+
+(TClr.11
+	Name:	"Transparent"
+)
+
+(TClr.12
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(LClass.13
+	IsText:	1
+	Label:	"Natural waterbodies"
+	MinStr:	"Natural waterbodies"
+	MaxStr:	"Natural waterbodies"
+	Precision:	-3
+)
+
+(LClass.14
+	IsNoData:	1
+	IsText:	1
+	Label:	"No Data"
+	Precision:	-3
+)
+
+(BShSym.15
+	Color:	16
+	Outline:	1
+	OutlineColor:	17
+	OutlineWidth:	0.10000000000000
+	BgColor:	18
+)
+
+(TClr.16
+	Name:	"Transparent"
+)
+
+(TClr.17
+	Name:	"Transparent"
+)
+
+(TClr.18
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(NameDict.19
+)
+
+(NameDict.20
+)
+

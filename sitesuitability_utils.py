@@ -103,6 +103,7 @@ def create_security_raster(workspace_gdb,
     trash_bucket.append(dissolvedBuffers)
 
     # Step 5
+    # Convert to raster
     value = "OBJECTID"
     out_raster_name = "security_raster"
     out_raster = convert_polygon_to_raster(workspace_gdb, dissolvedBuffers, value, out_raster_name)
@@ -135,18 +136,27 @@ def calculate_statistics(in_raster_dataset):
 
 def make_raster_layer(workspace_gdb,
                       in_raster,
-                      out_rasterLayer,
+                      out_raster_layer,
                       where_clause,
                       envelope,
                       band_index):
-    output_make_layer = arcpy.MakeRasterLayer_management(in_raster,
-                                     out_rasterLayer,
-                                     where_clause,
-                                     envelope,
-                                     band_index)
-    Reclass_slop1 = os.path.join(workspace_gdb, "Reclass_slop1")
-    output_make_layer.save(Reclass_slop1)
+    # os.path.join(workspace_gdb, "Reclass_slop1")
+    #
+    # arcpy.MakeRasterLayer_management(in_raster,
+    #                                  out_raster_layer,
+    #                                  where_clause,
+    #                                  envelope,
+    #                                  band_index).getOutput(0)
 
+    output_make_layer = arcpy.MakeRasterLayer_management(in_raster,
+                                                     out_raster_layer,
+                                                     where_clause,
+                                                     envelope,
+                                                     band_index).getOutput(0)
+
+    # Reclass_slop1 = os.path.join(workspace_gdb, "Reclass_slop1")
+    output_make_layer.save("MakeRas_slope_r1")
+    return output_make_layer
 
 def reclassify_raster_layer(workspace_gdb,
                             in_raster_layer,
@@ -157,6 +167,7 @@ def reclassify_raster_layer(workspace_gdb,
                                               reclass_field,
                                               remap,
                                               missing_values)
+
     reclass_output = os.path.join(workspace_gdb, "reclass_output")
     work_reclass_output.save(reclass_output)
     print ("end of reclassify")
@@ -164,10 +175,12 @@ def reclassify_raster_layer(workspace_gdb,
 
 
 
-#
-# def buffer_clip_protected_areas(input_protected_areas,
-#                                 buffer_size,
-#                                 buffer_attribute,
+
+
+
+# def buffer_clip_protected_areas(workspace_gdb,
+#                                 input_protected_areas,
+#                                 pa_buffer_size,
+#                                 pa_buffer_attribute,
 #                                 clipTo,
 #                                 clean_up_temp_files=True):
-#     trash_bucket = []

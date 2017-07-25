@@ -1,0 +1,124 @@
+/3.2
+(ODB.1
+	FirstRootClassName:	"Legend"
+	Roots:	2
+	Version:	32
+)
+
+(Legend.2
+	SymType:	0x02
+	LegType:	0x08
+	ClassType:	0x03
+	FieldNames:	3
+	Symbols:	4
+	Class:	14
+	Class:	15
+	StdDevs:	1.00000000000000
+	NullSym:	16
+	NullValues:	20
+	StatValues:	21
+	Precision:	-3
+)
+
+(AVStr.3
+	S:	"Landcover"
+)
+
+(SymList.4
+	Child:	5
+	Child:	10
+)
+
+(BShSym.5
+	Color:	6
+	Outline:	1
+	OutlineColor:	7
+	OutlineWidth:	0.10000000000000
+	BgColor:	8
+	Style:	0x03
+	Stipple:	9
+)
+
+(TClr.6
+)
+
+(TClr.7
+)
+
+(TClr.8
+	Red:	0xe600
+	Green:	0xbf00
+	Blue:	0x7300
+)
+
+(Stipple.9
+	Columns:	8
+	Rows:	8
+	Bits:	00440011 00440011 
+)
+
+(BShSym.10
+	Color:	11
+	Outline:	1
+	OutlineColor:	12
+	OutlineWidth:	0.10000000000000
+	BgColor:	13
+)
+
+(TClr.11
+	Name:	"Transparent"
+)
+
+(TClr.12
+	Name:	"Transparent"
+)
+
+(TClr.13
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(LClass.14
+	IsText:	1
+	Label:	"Bare areas"
+	MinStr:	"Bare areas"
+	MaxStr:	"Bare areas"
+	Precision:	-3
+)
+
+(LClass.15
+	IsNoData:	1
+	IsText:	1
+	Label:	"No Data"
+	Precision:	-3
+)
+
+(BShSym.16
+	Color:	17
+	Outline:	1
+	OutlineColor:	18
+	OutlineWidth:	0.10000000000000
+	BgColor:	19
+)
+
+(TClr.17
+	Name:	"Transparent"
+)
+
+(TClr.18
+	Name:	"Transparent"
+)
+
+(TClr.19
+	Red:	0xffff
+	Green:	0xffff
+	Blue:	0xffff
+)
+
+(NameDict.20
+)
+
+(NameDict.21
+)
+

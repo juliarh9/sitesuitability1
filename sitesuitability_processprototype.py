@@ -200,16 +200,22 @@ arcpy.CalculateStatistics_management(work_slope_out_path)
 work_reclass_out_path = os.path.join(workspace_gdb, "Reclass_slop1")
 # outReclass1.save(work_reclass_out_path)
 
-rasterLayer = arcpy.management.MakeRasterLayer(input_slope_raster,
-                                "MakeRas_slope_r1",
-                                 None,
-                                 "821686.139217557 -607944.542416126 1777512.22600888 654107.338987966",
-                                 None).getOutput(0)
+rasterLayer = arcpy.MakeRasterLayer_management(input_slope_raster,
+                                               "MakeRas_slope_r1",
+                                               None,
+                                               "821686.139217557 -607944.542416126 1777512.22600888 654107.338987966",
+                                               None).getOutput(0)
 
 out_raster = arcpy.sa.Reclassify(rasterLayer,
                                  "VALUE",
                                  "0 1 8;1 2 9;2 4 10;4 5 9;5 6 8;6 7 7;7 8 6;8 9 5;9 10 4;10 300 1",
-                                 "NODATA"); out_raster.save(work_reclass_out_path)
+                                 "NODATA")
+
+out_raster.save(work_reclass_out_path)
+
+print(rasterLayer)
+print(out_raster)
+print(work_reclass_out_path)
 
 
 # Step 10

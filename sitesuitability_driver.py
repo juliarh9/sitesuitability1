@@ -4,6 +4,9 @@ import datetime
 from arcpy.sa import Slope, RemapRange, Reclassify
 import sitesuitability_utils
 
+print ("current directory")
+print (os.getcwd())
+
 # This is a driver that uses utilities from sitesuitability_utils module to execute against defined inputs
 workspace = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\ModelBuildertoPython\Work"
 input_military_installations = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\militaryinstallations.shp"
@@ -21,15 +24,19 @@ input_soils = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Mo
 input_elevation = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\dem_250m"
 output_measurement = "PERCENT_RISE"
 z_factor = "1"
-out_rasterLayer = "MakeRas_slope_r1"
+out_raster_layer = "MakeRas_slope_r1"
 where_clause = None
 envelope = "821686.139217557 -607944.542416126 1777512.22600888 654107.338987966"
 band_index = None
 reclass_field = "VALUE"
 remap = "0 1 8;1 2 9;2 4 10;4 5 9;5 6 8;6 7 7;7 8 6;8 9 5;9 10 4;10 300 1"
 missing_values = "NODATA"
-input_bare_areas = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\ke_bareareas.shp"
-bare_areas_value = "LCID"
+pa_buffer_distance = "40 kilometers"
+pa_distance_field = "Distance"
+sideType = "FULL"
+endType = "ROUND"
+dissolveType = "ALL"
+protectedAreasValue = "FID"
 
 workspace_gdb = sitesuitability_utils.create_unique_fgdb(workspace)
 
@@ -81,7 +88,7 @@ calc_stat_output = sitesuitability_utils.calculate_statistics(slope_raster_outpu
 print ("Making raster layer...")
 raster_layer_output = sitesuitability_utils.make_raster_layer(workspace_gdb,
                                                               slope_raster_output,
-                                                              out_rasterLayer,
+                                                              out_raster_layer,
                                                               where_clause,
                                                               envelope,
                                                               band_index)
@@ -93,12 +100,5 @@ reclassify_output = sitesuitability_utils.Reclassify(raster_layer_output,
                                                      remap,
                                                      missing_values)
 print reclassify_output
-
-# print ("Converting bare areas...")
-# bare_areas_raster_output = sitesuitability_utils.convert_polygon_to_raster(workspace_gdb,
-#                                                                            input_bare_areas,
-#                                                                            bare_areas_value,
-#                                                                            "bare_areas_raster")
-
 
 

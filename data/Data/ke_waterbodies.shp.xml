@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<metadata>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<origin>Food and Agriculture Organization (FAO). 2000.  Africover  Multipurpose Land Cover Databases for Kenya.  www.africover.org.  Rome, Italy:FAO.</origin>
+				<pubdate>2000</pubdate>
+				<geoform Sync="TRUE">vector digital data</geoform>
+				<pubinfo>
+					<pubplace>Nairobi, Kenya</pubplace><publish>FAO</publish></pubinfo>
+				<lworkcit>
+					<citeinfo>
+						<origin>World Resources Institute</origin>
+						<origin>Kenya Central Bureau of Statistics</origin>
+						<origin>International Livestock Research Institute</origin>
+						<title>Nature's Benefits in Kenya: An Atlas of Ecosystems and Human Well-Being</title>
+						<pubinfo><pubplace>Washington, DC</pubplace><publish>World Resources Institute</publish></pubinfo><onlink>http://www.wri.org/biodiv/pubs_description.cfm?pid=4279</onlink><pubdate>2007</pubdate></citeinfo>
+				</lworkcit>
+				<ftname Sync="TRUE">ke_waterbodies</ftname><title>Waterbodies in Kenya</title><onlink Sync="TRUE">\\WRICSAP029333\GIS\Working\Poverty_mapping_East_Africa\Map_files_posters_NEW\Final_products\Data_CD\Metadata_Oct23\Shapefiles\ke_waterbodies.shp</onlink></citeinfo>
+		</citation>
+		<descript>
+			<abstract>This dataset portrays waterbodies in Kenya, from FAO's Africover dataset.</abstract>
+			<purpose>This data was used in maps throughout Nature's Benefits in Kenya: An Atlas of Ecosystems and Human Well-Being.</purpose>
+			<langdata Sync="TRUE">en</langdata><supplinf>Original data are downloadable at www.africover.org.</supplinf></descript>
+		<timeperd>
+			<timeinfo>
+				<sngdate/>
+			</timeinfo>
+			<current>publication date</current>
+		</timeperd>
+		<status>
+			<progress>Complete</progress>
+			<update>None planned</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc Sync="TRUE">33.948963</westbc>
+				<eastbc Sync="TRUE">41.890171</eastbc>
+				<northbc Sync="TRUE">5.431213</northbc>
+				<southbc Sync="TRUE">-4.389351</southbc>
+			</bounding>
+			<lboundng><leftbc Sync="TRUE">33.908859</leftbc><rightbc Sync="TRUE">41.345173</rightbc><bottombc Sync="TRUE">-4.670208</bottombc><topbc Sync="TRUE">4.990867</topbc></lboundng></spdom>
+		<keywords>
+			<theme>
+				<themekey>waterbodies</themekey>
+				<themekey>lakes</themekey><themekey>imageryBaseMapsEarthCover</themekey><themekey>inlandWaters</themekey></theme>
+			<place>
+				<placekt>None</placekt>
+				<placekey>Kenya</placekey>
+				<placekey>Africa</placekey>
+			</place>
+		</keywords>
+		<accconst>None</accconst>
+		<useconst>Data set is not for use in litigation. While efforts have been made to ensure that these data are accurate and reliable within the state of the art, WRI, cannot assume liability for any damages, or misrepresentations, caused by any inaccuracies in the data, or as a result of the data to be used on a particular system. WRI makes no warranty, expressed or implied, nor does the fact of distribution constitute such a warranty.</useconst>
+		<ptcontac>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>World Resources Institute</cntorg>
+				</cntorgp>
+				<cntpos>GIS Lab Manager</cntpos>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>10 G Street NE Suite 800</address>
+					<city>Washington</city>
+					<state>DC</state>
+					<postal>20002</postal>
+					<country>U.S.A</country>
+				</cntaddr>
+				<cntvoice>202-729-7600</cntvoice>
+				<cntfax>202-729-7686</cntfax>
+			</cntinfo>
+		</ptcontac>
+		<native Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 2; ESRI ArcCatalog 9.2.0.1324</native>
+		<natvform Sync="TRUE">Shapefile</natvform></idinfo>
+	<dataqual>
+		<posacc>
+			<horizpa>
+				<qhorizpa></qhorizpa>
+			</horizpa>
+		</posacc>
+		<lineage>
+			<srcinfo>
+				<srccite>
+					<citeinfo>
+						<origin>&lt;additional citation, if needed&gt;</origin>
+						<origin>&lt;additional citation, if needed&gt;</origin>
+						<pubinfo></pubinfo>
+						<lworkcit>
+							<citeinfo></citeinfo>
+						</lworkcit>
+					</citeinfo>
+				</srccite>
+				<srctime>
+					<timeinfo>
+						<sngdate></sngdate>
+					</timeinfo>
+				</srctime>
+			</srcinfo>
+			<procstep><procdesc Sync="TRUE">Metadata imported.</procdesc><srcused Sync="TRUE">J:\Groups\BRP\Staff folders\JWorms\Metadata\kenya_template4-final.xml</srcused><date Sync="TRUE">20070522</date><time Sync="TRUE">13513500</time></procstep><procstep><procdesc Sync="TRUE">Metadata imported.</procdesc><srcused Sync="TRUE">J:\Groups\BRP\Staff folders\JWorms\Metadata\GIS-files\ke-forests.shp.xml</srcused><date Sync="TRUE">20070524</date><time Sync="TRUE">16080700</time></procstep><procstep><procdesc Sync="TRUE">Metadata imported.</procdesc><srcused Sync="TRUE">J:\Groups\BRP\Staff folders\JWorms\Metadata\GIS-files\ke-agriculture.shp.xml</srcused><date Sync="TRUE">20070524</date><time Sync="TRUE">16141500</time></procstep><procstep><procdesc Sync="TRUE">Dataset copied.</procdesc><srcused Sync="TRUE">J:\groups\BRP\Staff folders\JWorms\Metadata\GIS-files\ke-rangeland</srcused><date Sync="TRUE">20070524</date><time Sync="TRUE">16162200</time></procstep><procstep><procdesc Sync="TRUE">Metadata imported.</procdesc><srcused Sync="TRUE">J:\Groups\BRP\Staff folders\JWorms\Metadata\GIS-files\Data\Ke_Landcover\Africover\ke-rangeland.shp.xml</srcused><date Sync="TRUE">20070525</date><time Sync="TRUE">15321700</time></procstep></lineage>
+	</dataqual>
+	<spdoinfo>
+		<direct Sync="TRUE">Vector</direct>
+		<ptvctinf>
+			<sdtsterm Name="ke_waterbodies">
+				<sdtstype Sync="TRUE">G-polygon</sdtstype>
+				<ptvctcnt Sync="TRUE">208</ptvctcnt>
+			</sdtsterm>
+			<esriterm Name="ke_waterbodies"><efeatyp Sync="TRUE">Simple</efeatyp><efeageom Sync="TRUE">Polygon</efeageom><esritopo Sync="TRUE">FALSE</esritopo><efeacnt Sync="TRUE">208</efeacnt><spindex Sync="TRUE">FALSE</spindex><linrefer Sync="TRUE">FALSE</linrefer></esriterm></ptvctinf>
+	</spdoinfo>
+	<spref>
+		<horizsys>
+			<geograph>
+				<latres Sync="TRUE">0.000000</latres>
+				<longres Sync="TRUE">0.000000</longres>
+				<geogunit Sync="TRUE">Decimal degrees</geogunit>
+			</geograph>
+			<geodetic>
+				<horizdn Sync="TRUE">D_WGS_1984</horizdn>
+				<ellips Sync="TRUE">WGS_1984</ellips>
+				<semiaxis Sync="TRUE">6378137.000000</semiaxis>
+				<denflat Sync="TRUE">298.257224</denflat>
+			</geodetic>
+			<cordsysn><geogcsn Sync="TRUE">GCS_WGS_1984</geogcsn></cordsysn></horizsys>
+	</spref>
+	<eainfo>
+		<detailed Name="ke_waterbodies">
+			<enttyp>
+				<enttypl Sync="TRUE">ke_waterbodies</enttypl>
+				<enttypt Sync="TRUE">Feature Class</enttypt><enttypc Sync="TRUE">208</enttypc></enttyp>
+			<attr>
+				<attrlabl>Shape</attrlabl>
+				<attrdef>Feature geometry.</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Coordinates defining the features.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl>FID</attrlabl>
+				<attrdef>Internal feature number.</attrdef>
+				<attrdefs>ESRI</attrdefs>
+				<attrdomv>
+					<udom>Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr><attrlabl Sync="TRUE">LCID</attrlabl><attalias Sync="TRUE">LCID</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">15</attwidth><attrdef>Africover Land Cover code</attrdef></attr><attr><attrlabl Sync="TRUE">LANDCOVER</attrlabl><attalias Sync="TRUE">LANDCOVER</attalias><attrtype Sync="TRUE">String</attrtype><attwidth Sync="TRUE">254</attwidth><attrdef>Land Cover description</attrdef></attr></detailed>
+		<overview></overview>
+	</eainfo>
+	<distinfo>
+		<distrib>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>World Resources Institute</cntorg>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>World Resources Institute</address>
+					<city>Washington</city>
+					<state>DC</state>
+					<postal>20002</postal>
+					<country>USA</country>
+				</cntaddr>
+				<cntvoice>202-729-7600</cntvoice>
+				<cntfax>202-729-7686</cntfax>
+				<cntemail></cntemail>
+			</cntinfo>
+		</distrib>
+		<resdesc>Downloadable Data</resdesc>
+		<stdorder>
+			<digform>
+				<digtinfo>
+					<transize>6.717</transize>
+					<dssize Sync="TRUE">0.828</dssize></digtinfo>
+			</digform>
+		</stdorder>
+	</distinfo>
+	<metainfo>
+		<metd Sync="TRUE">20071025</metd>
+		<metc>
+			<cntinfo>
+				<cntorgp>
+					<cntorg>World Resources Institute</cntorg>
+				</cntorgp>
+				<cntpos>GIS Lab Manager</cntpos>
+				<cntaddr>
+					<addrtype>mailing and physical address</addrtype>
+					<address>10 G Street NE, Suite 800</address>
+					<city>Washington</city>
+					<state>DC</state>
+					<postal>20002</postal>
+					<country>U.S.A</country>
+				</cntaddr>
+				<cntvoice>202-729-7600</cntvoice>
+				<cntfax>202-279-7686</cntfax>
+			</cntinfo>
+		</metc>
+		<metstdn Sync="TRUE">FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+		<metstdv Sync="TRUE">FGDC-STD-001-1998</metstdv>
+		<mettc Sync="TRUE">local time</mettc>
+		<metextns>
+			<onlink>http://www.esri.com/metadata/esriprof80.html</onlink>
+			<metprof>ESRI Metadata Profile</metprof>
+		</metextns>
+		<metextns>
+			<onlink>http://www.esri.com/metadata/esriprof80.html</onlink>
+			<metprof>ESRI Metadata Profile</metprof>
+		</metextns>
+		<langmeta Sync="TRUE">en</langmeta><metextns><onlink Sync="TRUE">http://www.esri.com/metadata/esriprof80.html</onlink><metprof Sync="TRUE">ESRI Metadata Profile</metprof></metextns></metainfo>
+	<Esri><CreaDate>20070525</CreaDate><CreaTime>15321700</CreaTime><SyncOnce>FALSE</SyncOnce><SyncDate>20071025</SyncDate><SyncTime>16180900</SyncTime><ModDate>20071025</ModDate><ModTime>16180900</ModTime><MetaID>{6E498CE8-AAF4-46E8-BDAF-88D272AD3EA6}</MetaID></Esri><dataIdInfo><envirDesc Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 2; ESRI ArcCatalog 9.2.0.1324</envirDesc><dataLang><languageCode Sync="TRUE" value="en"></languageCode></dataLang><idCitation><resTitle Sync="TRUE">ke_waterbodies</resTitle><presForm><PresFormCd Sync="TRUE" value="005"></PresFormCd></presForm></idCitation><spatRpType><SpatRepTypCd Sync="TRUE" value="001"></SpatRepTypCd></spatRpType><dataExt><geoEle><GeoBndBox esriExtentType="native"><westBL Sync="TRUE">33.908859</westBL><eastBL Sync="TRUE">41.345173</eastBL><northBL Sync="TRUE">4.990867</northBL><southBL Sync="TRUE">-4.670208</southBL><exTypeCode Sync="TRUE">1</exTypeCode></GeoBndBox></geoEle></dataExt><geoBox esriExtentType="decdegrees"><westBL Sync="TRUE">33.948963</westBL><eastBL Sync="TRUE">41.890171</eastBL><northBL Sync="TRUE">5.431213</northBL><southBL Sync="TRUE">-4.389351</southBL><exTypeCode Sync="TRUE">1</exTypeCode></geoBox></dataIdInfo><mdLang><languageCode Sync="TRUE" value="en"></languageCode></mdLang><mdStanName Sync="TRUE">ISO 19115 Geographic Information - Metadata</mdStanName><mdStanVer Sync="TRUE">DIS_ESRI1.0</mdStanVer><mdChar><CharSetCd Sync="TRUE" value="004"></CharSetCd></mdChar><mdHrLv><ScopeCd Sync="TRUE" value="005"></ScopeCd></mdHrLv><mdHrLvName Sync="TRUE">dataset</mdHrLvName><distInfo><distributor><distorTran><onLineSrc><orDesc Sync="TRUE">002</orDesc><linkage Sync="TRUE">file://\\WRICSAP029333\GIS\Working\Poverty_mapping_East_Africa\Map_files_posters_NEW\Final_products\Data_CD\Metadata_Oct23\Shapefiles\ke_waterbodies.shp</linkage><protocol Sync="TRUE">Local Area Network</protocol></onLineSrc><transSize Sync="TRUE">0.828</transSize></distorTran><distorFormat><formatName Sync="TRUE">Shapefile</formatName></distorFormat></distributor></distInfo><refSysInfo><RefSystem><refSysID><identCode Sync="TRUE">GCS_WGS_1984</identCode></refSysID></RefSystem></refSysInfo><spatRepInfo><VectSpatRep><topLvl><TopoLevCd Sync="TRUE" value="001"></TopoLevCd></topLvl><geometObjs Name="ke_waterbodies"><geoObjTyp><GeoObjTypCd Sync="TRUE" value="001"></GeoObjTypCd></geoObjTyp><geoObjCnt Sync="TRUE">208</geoObjCnt></geometObjs></VectSpatRep></spatRepInfo><mdDateSt Sync="TRUE">20071025</mdDateSt></metadata>
