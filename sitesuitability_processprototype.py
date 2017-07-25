@@ -212,7 +212,6 @@ out_raster = arcpy.sa.Reclassify(rasterLayer,
                                  "NODATA"); out_raster.save(work_reclass_out_path)
 
 
-
 # Step 10
 #
 # print ("converting floodplains polygon to raster...")

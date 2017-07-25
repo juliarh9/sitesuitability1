@@ -31,7 +31,6 @@ def get_fc_name_from_full_path(fc_path):
     """
     return fc_path.split("\\")[-1]
 
-
 def convert_polygon_to_raster(workspace_gdb, in_feature, value, out_raster_name):
     print ("executing convert polygon to raster...")
     output_path = os.path.join(workspace_gdb, out_raster_name)
@@ -40,15 +39,15 @@ def convert_polygon_to_raster(workspace_gdb, in_feature, value, out_raster_name)
     print ("finished processing conversion")
     return output_raster
 
-
-
-def create_security_raster(workspace_gdb, in_features_list,
+def create_security_raster(workspace_gdb,
+                           in_features_list,
                            buffer_size,
                            buffer_attribute,
                            clip_to,
                            clean_up_temp_files=True):
     """
     
+    :param clean_up_temp_files: create a trash bucket
     :param in_features_list: input points, lines, or polygons to be buffered
     :param buffer_size: specify numerical buffer distance
     :param buffer_attribute: specify distance units
@@ -108,10 +107,67 @@ def create_security_raster(workspace_gdb, in_features_list,
     out_raster_name = "security_raster"
     out_raster = convert_polygon_to_raster(workspace_gdb, dissolvedBuffers, value, out_raster_name)
 
+
+    # Step 6
+    if clean_up_temp_files == True:
+        cleanup_trash(trash_bucket)
+
     print ("end of security buffer script")
     return out_raster
 
+def create_slope_raster(workspace_gdb,
+                        input_elevation,
+                        output_measurement,
+                        z_factor):
+    arcpy.CheckOutExtension("Spatial")
+    output_slope_raster = Slope(input_elevation,
+                                output_measurement,
+                                z_factor)
+    slope_raster = os.path.join(workspace_gdb, "slope_raster")
+    output_slope_raster.save(slope_raster)
 
-# def create_slope_raster(workspace_gdb, input_elevation, input_slope_raster, output_measurement, reclass_field):
+    print ("end of slope script")
+    return slope_raster
+
+def calculate_statistics(in_raster_dataset):
+    arcpy.CalculateStatistics_management(in_raster_dataset)
 
 
+def make_raster_layer(workspace_gdb,
+                      in_raster,
+                      out_rasterLayer,
+                      where_clause,
+                      envelope,
+                      band_index):
+    output_make_layer = arcpy.MakeRasterLayer_management(in_raster,
+                                     out_rasterLayer,
+                                     where_clause,
+                                     envelope,
+                                     band_index)
+    Reclass_slop1 = os.path.join(workspace_gdb, "Reclass_slop1")
+    output_make_layer.save(Reclass_slop1)
+
+
+def reclassify_raster_layer(workspace_gdb,
+                            in_raster_layer,
+                            reclass_field,
+                            remap,
+                            missing_values):
+    work_reclass_output = arcpy.sa.Reclassify(in_raster_layer,
+                                              reclass_field,
+                                              remap,
+                                              missing_values)
+    reclass_output = os.path.join(workspace_gdb, "reclass_output")
+    work_reclass_output.save(reclass_output)
+    print ("end of reclassify")
+    return reclass_output
+
+
+
+#
+# def buffer_clip_protected_areas(input_protected_areas,
+#                                 buffer_size,
+#                                 buffer_attribute,
+#                                 clipTo,
+#                                 clean_up_temp_files=True):
+#     trash_bucket = []
