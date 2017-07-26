@@ -23,12 +23,25 @@ print ("started operation")
 
 # Step 6: Clean up intermediate files
 
-#### DEV SECTION ####
+#### TOOL PARAMETERS ####
 print ("setting the workspace...")
 workspace = arcpy.GetParameterAsText(0)
-#### END DEV SECTION ####
+input_military_installations = arcpy.GetParameterAsText(1)
+input_areas_of_conflict = arcpy.GetParameterAsText(2)
+input_administrative_boundary = arcpy.GetParameterAsText(3)
+buffer_size = arcpy.GetParameterAsText(4)
+buffer_attribute = arcpy.GetParameterAsText(5)
+clipTo = arcpy.GetParameterAsText(6)
+input_elev_raster = arcpy.GetParameterAsText(7)
+reclass_field = arcpy.GetParameterAsText(8)
+input_floodplains = arcpy.GetParameterAsText(9)
+floodplains_value = arcpy.GetParameterAsText(10)
+input_wetlands = arcpy.GetParameterAsText(11)
+wetlands_value = arcpy.GetParameterAsText(12)
+input_soils = arcpy.GetParameterAsText(13)
+soils_value = arcpy.GetParameterAsText(14)
 
-# "0 1 8;1 2 9;2 4 10;4 5 9;5 6 8;6 7 7;7 8 6;8 9 5;9 10 4;10 300 1"
+#### END TOOL PARAMETERS ####
 
 
 # Step 0
@@ -46,16 +59,10 @@ workspace_gdb = arcpy.CreateFileGDB_management(workspace,
 
 # Set reference to the buffer tool operation config parameters
 print ("setting reference to the buffer tool operation configuration parameters...")
-buffer_size = arcpy.GetParameterAsText(1)
-buffer_attribute = arcpy.GetParameterAsText(2)
 buffer_size_string = "{0} {1}".format(buffer_size, buffer_attribute)
 
 # Setting references to the inputs of the process
 print ("setting references to the inputs of the process...")
-input_military_installations = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\militaryinstallations.shp"
-input_areas_of_conflict = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\Conflicts2015.shp"
-input_administrative_boundary = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\lineboundary.shp"
-clipTo = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\ke_district_boundaries.shp"
 
 # Step 1
 
@@ -150,13 +157,6 @@ print ("setting references to the slope tool operation configuration parameters.
 outMeasurement = "PERCENT_RISE"
 zFactor = 1
 
-# Set references to the inputs of the process
-print ("setting references to the inputs of the process...")
-input_elev_raster = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\dem_250m"
-input_floodplains = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\ke_floodplains.shp"
-input_wetlands = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\wetlands\ke_wetlands.shp"
-input_soils = r"C:\Users\juli9202\Documents\2017_06\Site Suitability Analysis Model\Data\soils.shp"
-
 # Step 8
 
 print ("executing slope...")
@@ -173,46 +173,24 @@ print (work_slope_out_path)
 
 # Step 9
 
-# print ("calculating statistics...")
-# Calculate statistics on the output slope raster
-# arcpy.CalculateStatistics_management(work_slope_out_path)
-
-# print("reclassifying the slope output...")
 # Set local variables
 input_slope_raster = work_slope_out_path
-reclass_field = "VALUE"
-reclass_values = arcpy.GetParameter(3)
-# Define the RemapValue Object
-# myRemapRange = RemapRange([[0, 1, 8], [1, 2, 9], [2, 4, 10], [4, 5, 9], [5, 6, 8], [6, 7, 7], [7, 8, 6], [8, 9, 5], [9, 10, 4], [10, 300, 1]])
-# Execute Reclassify
-# outReclassRR = Reclassify(input_slope_raster, reclass_field, myRemapRange, "NODATA")
-# Specify a temporary path to the reclassify output
 
-# Save the output
-# outReclassRR.save(work_reclassify_out_path)
-
-# Step 9 Alternative:
-
-# print ("calculating statistics...")
+print ("calculating statistics...")
 arcpy.CalculateStatistics_management(work_slope_out_path)
-#
-# print ("reclassifying the slope output...")
-# outReclass1 = Reclassify(work_slope_out_path, "VALUE",
-#                              "0 1 8;1 2 9;2 4 10;4 5 9;5 6 8;6 7 7;7 8 6;8 9 5;9 10 4;10 300 1",
-#                              "NODATA")
 
+print ("reclassifying the slope output...")
 work_reclass_out_path = os.path.join(workspace_gdb, "Reclass_slop1")
-# outReclass1.save(work_reclass_out_path)
-
+# Making Raster Layer
 rasterLayer = arcpy.MakeRasterLayer_management(input_slope_raster,
                                                "MakeRas_slope_r1",
                                                None,
                                                "821686.139217557 -607944.542416126 1777512.22600888 654107.338987966",
                                                None).getOutput(0)
-
+# Reclassifying
 out_raster = arcpy.sa.Reclassify(rasterLayer,
                                  "VALUE",
-                                 reclass_values,
+                                 "0 1 8;1 2 9;2 4 10;4 5 9;5 6 8;6 7 7;7 8 6;8 9 5;9 10 4;10 300 1",
                                  "NODATA")
 
 out_raster.save(work_reclass_out_path)
@@ -223,34 +201,35 @@ print(work_reclass_out_path)
 
 
 # Step 10
-#
-# print ("converting floodplains polygon to raster...")
-# # Set local variables
+
+print ("converting floodplains polygon to raster...")
+# Set local variables
 # floodplains_value = "LITH_ID"
-# # Specify a path to the raster output
-# out_floodplains_raster = os.path.join(workspace_gdb, "floodplains_raster")
-# # Execute PolygonToRaster
-# arcpy.PolygonToRaster_conversion(input_floodplains, floodplains_value, out_floodplains_raster)
-#
-# # Step 11
-#
-# print("converting wetlands polygon to raster...")
-# # Set local variables
+# Specify a path to the raster output
+out_floodplains_raster = os.path.join(workspace_gdb, "floodplains_raster")
+# Execute PolygonToRaster
+arcpy.PolygonToRaster_conversion(input_floodplains, floodplains_value, out_floodplains_raster)
+
+# Step 11
+
+print("converting wetlands polygon to raster...")
+# Set local variables
 # wetlands_value = "WETLAND"
-# # Specify a path to the raster output
-# out_wetlands_raster = os.path.join(workspace_gdb, "wetlands_raster")
-# # Execute PolygonToRaster
-# arcpy.PolygonToRaster_conversion(input_wetlands, wetlands_value, out_wetlands_raster)
-#
-# # Step 12
-#
-# print ("converting soils polygon to raster")
-# # Set local variables
+# Specify a path to the raster output
+out_wetlands_raster = os.path.join(workspace_gdb, "wetlands_raster")
+# Execute PolygonToRaster
+arcpy.PolygonToRaster_conversion(input_wetlands, wetlands_value, out_wetlands_raster)
+
+# Step 12
+
+print ("converting soils polygon to raster")
+# Set local variables
 # soils_value = "SDRA"
-# # Specify a path to the raster output
-# out_soils_raster = os.path.join(workspace_gdb, "soils_raster")
-# # Execute PolygonToRaster
-# arcpy.PolygonToRaster_conversion(input_soils, soils_value, out_soils_raster)
+# Specify a path to the raster output
+out_soils_raster = os.path.join(workspace_gdb, "soils_raster")
+# Execute PolygonToRaster
+arcpy.PolygonToRaster_conversion(input_soils, soils_value, out_soils_raster)
+
 
 # Step 13
 
